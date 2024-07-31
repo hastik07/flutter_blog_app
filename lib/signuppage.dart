@@ -51,23 +51,22 @@ class SignUpPage extends StatelessWidget {
                       focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
                       fillColor: Colors.white,
                       filled: true,
-                      hintText: 'Username',
+                      hintText: 'Password',
                   ),
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
                 ),
               ),
-              const SizedBox(height: 10,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text('Forgot Password?', style: TextStyle(color: Colors.grey.shade600),),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20,),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.end,
+              //     children: [
+              //       Text('Forgot Password?', style: TextStyle(color: Colors.grey.shade600),),
+              //     ],
+              //   ),
+              // ),
+              const SizedBox(height: 30,),
               Container(
                 padding: const EdgeInsets.all(25.0),
                 margin: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -85,6 +84,7 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(height: 50,),
               Row(
                 children: [
+                  const SizedBox(width: 25,),
                   Expanded(
                       child: Divider(
                         thickness: 0.5,
@@ -98,6 +98,7 @@ class SignUpPage extends StatelessWidget {
                       color: Colors.grey[300],
                     ),
                   ),
+                  const SizedBox(width: 25,),
                 ],
               ),
               const SizedBox(height: 30,),
