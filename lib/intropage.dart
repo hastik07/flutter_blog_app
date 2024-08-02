@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:blog_app/signuppage.dart';
 import 'package:flutter/material.dart';
 
