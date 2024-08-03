@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
+class NotificationPage extends StatelessWidget {
+  const NotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +25,22 @@ class SearchPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Container(
-                    width: 350,
-                    height: 49,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade400,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: const Row(
-                      children: [
-                        SizedBox(width: 15,),
-                        Icon(Icons.arrow_back_rounded),
-                        SizedBox(width: 15,),
-                        Text('Search by title...')
-                      ],
-                    ),
-                  ),
-                ),
+              const SizedBox(height: 12,),
+              Row(
+                children: [
+                  const SizedBox(width: 10,),
+                  const Icon(Icons.arrow_back_outlined),
+                  const SizedBox(width: 20,),
+                  const Text('Notifications', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                  const SizedBox(width: 150,),
+                  Image.asset('assets/images/Profile Picture.png'),
+                ],
               ),
+              const SizedBox(height: 10,),
+              const Divider(thickness: 1.5,),
+              const SizedBox(height: 20,),
               Container(
-                width: 350,
+                width: 326,
                 height: 115,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade400,
@@ -55,16 +48,14 @@ class SearchPage extends StatelessWidget {
                 ),
                 child: const Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
-                    )
+                    SizedBox(width: 20,),
+                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
               const SizedBox(height: 10,),
               Container(
-                width: 350,
+                width: 326,
                 height: 115,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade400,
@@ -72,16 +63,14 @@ class SearchPage extends StatelessWidget {
                 ),
                 child: const Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
-                    )
+                    SizedBox(width: 20,),
+                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
               const SizedBox(height: 10,),
               Container(
-                width: 350,
+                width: 326,
                 height: 115,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade400,
@@ -89,16 +78,14 @@ class SearchPage extends StatelessWidget {
                 ),
                 child: const Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
-                    )
+                    SizedBox(width: 20,),
+                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
               const SizedBox(height: 10,),
               Container(
-                width: 350,
+                width: 326,
                 height: 115,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade400,
@@ -106,16 +93,14 @@ class SearchPage extends StatelessWidget {
                 ),
                 child: const Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
-                    )
+                    SizedBox(width: 20,),
+                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
               const SizedBox(height: 10,),
               Container(
-                width: 350,
+                width: 326,
                 height: 115,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade400,
@@ -123,16 +108,14 @@ class SearchPage extends StatelessWidget {
                 ),
                 child: const Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
-                    )
+                    SizedBox(width: 20,),
+                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
               const SizedBox(height: 10,),
               Container(
-                width: 350,
+                width: 326,
                 height: 115,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade400,
@@ -140,10 +123,8 @@ class SearchPage extends StatelessWidget {
                 ),
                 child: const Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
-                    )
+                    SizedBox(width: 20,),
+                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),

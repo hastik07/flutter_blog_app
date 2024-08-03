@@ -8,25 +8,16 @@ class UploadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: Container(
-        color: Colors.grey.shade500,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
-          child: GNav(
-            backgroundColor: Colors.grey.shade500,
-            color: Colors.black,
-            activeColor: Colors.black,
-            tabBackgroundColor: Colors.yellow.shade800,
-            padding: const EdgeInsets.all(16),
-            tabs: const [
-              GButton(icon: Icons.home),
-              GButton(icon: Icons.search),
-              GButton(icon: Icons.add_circle),
-              GButton(icon: Icons.notifications),
-              GButton(icon: Icons.person),
-            ],
-          ),
-        ),
+      bottomNavigationBar: GNav(
+        tabBackgroundColor: Colors.grey.shade400,
+        padding: const EdgeInsets.all(16),
+        tabs: const [
+          GButton(icon: Icons.home),
+          GButton(icon: Icons.search),
+          GButton(icon: Icons.add_circle),
+          GButton(icon: Icons.notifications),
+          GButton(icon: Icons.person),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
