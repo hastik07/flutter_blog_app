@@ -37,223 +37,26 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 10,),
               Row(
                 children: [
-                  const SizedBox(width: 33,),
-                  const Text('Following'),
-                  const SizedBox(width: 33,),
-                  const Text('Followers'),
-                  const SizedBox(width: 33,),
-                  Text('Recents', style: TextStyle(color: Colors.yellow[900]),),
-                  const SizedBox(width: 33,),
-                  const Text('Trends'),
+                  const SizedBox(width: 40,),
+                  Text('Recents', style: TextStyle(color: Colors.yellow[900], fontWeight: FontWeight.bold),),
+                  const SizedBox(width: 70,),
+                  const Text('Following', style: TextStyle(fontWeight: FontWeight.bold),),
+                  const SizedBox(width: 85,),
+                  const Text('Followers',style: TextStyle(fontWeight: FontWeight.bold),),
                 ],
               ),
               const Divider(thickness: 2.0,),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    height: 55,
-                    width: 55,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.grey.shade400
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    height: 55,
-                    width: 280,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade400,
-                      borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
+              SizedBox(
+                width: 380,
+                child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover,),
               ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    height: 55,
-                    width: 55,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.grey.shade400
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    height: 55,
-                    width: 280,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
+              SizedBox(
+                width: 380,
+                child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover,),
               ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    height: 55,
-                    width: 55,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.grey.shade400
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    height: 55,
-                    width: 280,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    height: 55,
-                    width: 55,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.grey.shade400
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    height: 55,
-                    width: 280,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    height: 55,
-                    width: 55,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.grey.shade400
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    height: 55,
-                    width: 280,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    width: 55,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade400,
-                      borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    width: 280,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade400,
-                      borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    width: 55,
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    width: 280,
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    width: 55,
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    width: 280,
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    width: 55,
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    width: 280,
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
+              SizedBox(
+                width: 380,
+                child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover,),
               ),
             ],
           ),
