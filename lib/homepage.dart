@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,11 +7,32 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Container(
+        color: Colors.grey.shade500,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
+          child: GNav(
+            backgroundColor: Colors.grey.shade500,
+            color: Colors.black,
+            activeColor: Colors.black,
+            tabBackgroundColor: Colors.yellow.shade800,
+            padding: const EdgeInsets.all(16),
+            tabs: const [
+              GButton(icon: Icons.home),
+              GButton(icon: Icons.search),
+              GButton(icon: Icons.add_circle),
+              GButton(icon: Icons.notifications),
+              GButton(icon: Icons.person),
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
                 Row(
                   children: [
@@ -238,42 +260,6 @@ class HomePage extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.grey.shade400,
                         borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                children: [
-                  const SizedBox(width: 25,),
-                  Container(
-                    width: 345,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade800,
-                      borderRadius: BorderRadius.circular(8.0)
-                    ),
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 15,),
-                        Container(
-                          width: 45,
-                          height: 45,
-                          decoration: BoxDecoration(
-                            color: Colors.yellow.shade700,
-                            borderRadius: BorderRadius.circular(50)
-                          ),
-                          child: Image.asset('assets/images/home.png'),
-                        ),
-                        const SizedBox(width: 38,),
-                        Image.asset('assets/images/search.png'),
-                        const SizedBox(width: 38,),
-                        Image.asset('assets/images/Plus.png'),
-                        const SizedBox(width: 38,),
-                        Image.asset('assets/images/notification.png'),
-                        const SizedBox(width: 38,),
-                        Image.asset('assets/images/Group.png'),
-                      ],
                     ),
                   )
                 ],
