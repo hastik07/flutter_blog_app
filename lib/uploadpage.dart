@@ -56,7 +56,7 @@ class UploadPage extends StatelessWidget {
               ElevatedButton(onPressed: () {
               }, child: const Text(
                   'Upload',
-                style: TextStyle(fontSize: 20.0,),
+                style: TextStyle(fontFamily: 'Poppins', fontSize: 20.0,),
               ))
             ],
           ),

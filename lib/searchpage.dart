@@ -40,7 +40,7 @@ class SearchPage extends StatelessWidget {
                         SizedBox(width: 15,),
                         Icon(Icons.arrow_back_rounded),
                         SizedBox(width: 15,),
-                        Text('Search by title...')
+                        Text('Search by title...', style: TextStyle(fontFamily: 'Poppins'),)
                       ],
                     ),
                   ),
@@ -57,7 +57,7 @@ class SearchPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
+                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
                     )
                   ],
                 ),
@@ -74,7 +74,7 @@ class SearchPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
+                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
                     )
                   ],
                 ),
@@ -91,7 +91,7 @@ class SearchPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
+                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
                     )
                   ],
                 ),
@@ -108,7 +108,7 @@ class SearchPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
+                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
                     )
                   ],
                 ),
@@ -125,7 +125,7 @@ class SearchPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
+                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
                     )
                   ],
                 ),
@@ -142,7 +142,7 @@ class SearchPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontWeight: FontWeight.bold, height: 10)),
+                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
                     )
                   ],
                 ),

@@ -21,14 +21,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
             "Password Reset Email has been sent !",
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(fontFamily: 'Poppins',fontSize: 20.0),
           )));
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
               "No user found for that email.",
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(fontFamily: 'Poppins',fontSize: 20.0),
             )));
       }
     }
@@ -49,8 +49,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               child: const Text(
                 "Password Recovery",
                 style: TextStyle(
+                    fontFamily: 'Poppins',
                     color: Colors.white,
-                    fontSize: 30.0,
+                    fontSize: 27.0,
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -60,8 +61,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             const Text(
               "Enter your mail",
               style: TextStyle(
+                  fontFamily: 'Poppins',
                   color: Colors.white,
-                  fontSize: 20.0,
+                  fontSize: 17.0,
                   fontWeight: FontWeight.bold),
             ),
             Expanded(
@@ -90,7 +92,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               decoration: const InputDecoration(
                                   hintText: "Email",
                                   hintStyle: TextStyle(
-                                      fontSize: 18.0, color: Colors.white),
+                                      fontSize: 18.0,
+                                      color: Colors.white,
+                                      fontFamily: 'Poppins'
+                                  ),
                                   prefixIcon: Icon(
                                     Icons.person,
                                     color: Colors.white70,
@@ -121,6 +126,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 child: Text(
                                   "Send Email",
                                   style: TextStyle(
+                                      fontFamily: 'Poppins',
                                       color: Colors.black,
                                       fontSize: 18.0,
                                       fontWeight: FontWeight.bold),
@@ -137,7 +143,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               const Text(
                                 "Don't have an account?",
                                 style: TextStyle(
-                                    fontSize: 18.0, color: Colors.white),
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                    fontFamily: 'Poppins'
+                                ),
                               ),
                               const SizedBox(
                                 width: 5.0,
@@ -152,6 +161,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 child: const Text(
                                   "Create",
                                   style: TextStyle(
+                                      fontFamily: 'Poppins',
                                       color: Color.fromARGB(225, 184, 166, 6),
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.w500),

@@ -31,8 +31,8 @@ class NotificationPage extends StatelessWidget {
                   const SizedBox(width: 10,),
                   const Icon(Icons.arrow_back_outlined),
                   const SizedBox(width: 20,),
-                  const Text('Notifications', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                  const SizedBox(width: 150,),
+                  const Text('Notifications', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 20),),
+                  const SizedBox(width: 130,),
                   Image.asset('assets/images/Profile Picture.png'),
                 ],
               ),
@@ -49,7 +49,7 @@ class NotificationPage extends StatelessWidget {
                 child: const Row(
                   children: [
                     SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text('Notification', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
@@ -64,7 +64,7 @@ class NotificationPage extends StatelessWidget {
                 child: const Row(
                   children: [
                     SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text('Notification', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
@@ -79,7 +79,7 @@ class NotificationPage extends StatelessWidget {
                 child: const Row(
                   children: [
                     SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text('Notification', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
@@ -94,7 +94,7 @@ class NotificationPage extends StatelessWidget {
                 child: const Row(
                   children: [
                     SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text('Notification', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
@@ -109,7 +109,7 @@ class NotificationPage extends StatelessWidget {
                 child: const Row(
                   children: [
                     SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text('Notification', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
@@ -124,7 +124,7 @@ class NotificationPage extends StatelessWidget {
                 child: const Row(
                   children: [
                     SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
+                    Text('Notification', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),

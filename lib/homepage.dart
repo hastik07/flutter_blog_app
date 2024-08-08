@@ -38,11 +38,11 @@ class HomePage extends StatelessWidget {
               Row(
                 children: [
                   const SizedBox(width: 40,),
-                  Text('Recents', style: TextStyle(color: Colors.yellow[900], fontWeight: FontWeight.bold),),
+                  Text('Recents', style: TextStyle( fontFamily: 'Poppins',color: Colors.yellow[900], fontWeight: FontWeight.bold),),
                   const SizedBox(width: 70,),
-                  const Text('Following', style: TextStyle(fontWeight: FontWeight.bold),),
-                  const SizedBox(width: 85,),
-                  const Text('Followers',style: TextStyle(fontWeight: FontWeight.bold),),
+                  const Text('Following', style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
+                  const SizedBox(width: 70,),
+                  const Text('Followers',style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
                 ],
               ),
               const Divider(thickness: 2.0,),

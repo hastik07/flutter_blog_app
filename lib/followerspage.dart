@@ -36,11 +36,11 @@ class FollowersPage extends StatelessWidget {
               Row(
                 children: [
                   const SizedBox(width: 40,),
-                  const Text('Recents', style: TextStyle(fontWeight: FontWeight.bold),),
+                  const Text('Recents', style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
                   const SizedBox(width: 70,),
-                  const Text('Following', style: TextStyle(fontWeight: FontWeight.bold),),
-                  const SizedBox(width: 85,),
-                  Text('Followers',style: TextStyle(color: Colors.yellow[900],fontWeight: FontWeight.bold),),
+                  const Text('Following', style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
+                  const SizedBox(width: 70,),
+                  Text('Followers',style: TextStyle( fontFamily: 'Poppins',color: Colors.yellow[900],fontWeight: FontWeight.bold),),
                 ],
               ),
               const Divider(thickness: 2.0,),
@@ -58,9 +58,9 @@ class FollowersPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                        child: Text('Hastik', style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.w500, fontSize: 20),),
                       ),
-                      Text('Username',)
+                      Text('Username', style: TextStyle( fontFamily: 'Poppins'),)
                     ],
                   )
                 ],
@@ -80,9 +80,9 @@ class FollowersPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                        child: Text('Hastik', style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w500, fontSize: 20),),
                       ),
-                      Text('Username',)
+                      Text('Username', style: TextStyle( fontFamily: 'Poppins'))
                     ],
                   )
                 ],
@@ -102,9 +102,9 @@ class FollowersPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                        child: Text('Hastik', style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w500, fontSize: 20),),
                       ),
-                      Text('Username',)
+                      Text('Username', style: TextStyle( fontFamily: 'Poppins'))
                     ],
                   )
                 ],
@@ -124,9 +124,9 @@ class FollowersPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                        child: Text('Hastik', style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w500, fontSize: 20),),
                       ),
-                      Text('Username',)
+                      Text('Username', style: TextStyle( fontFamily: 'Poppins'))
                     ],
                   )
                 ],
@@ -146,9 +146,9 @@ class FollowersPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                        child: Text('Hastik', style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w500, fontSize: 20),),
                       ),
-                      Text('Username',)
+                      Text('Username', style: TextStyle( fontFamily: 'Poppins'))
                     ],
                   )
                 ],
@@ -168,9 +168,9 @@ class FollowersPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                        child: Text('Hastik', style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w500, fontSize: 20),),
                       ),
-                      Text('Username',)
+                      Text('Username', style: TextStyle( fontFamily: 'Poppins'))
                     ],
                   )
                 ],
@@ -190,9 +190,9 @@ class FollowersPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                        child: Text('Hastik', style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w500, fontSize: 20),),
                       ),
-                      Text('Username',)
+                      Text('Username', style: TextStyle( fontFamily: 'Poppins'))
                     ],
                   )
                 ],
@@ -212,9 +212,9 @@ class FollowersPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+                        child: Text('Hastik', style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w500, fontSize: 20),),
                       ),
-                      Text('Username',)
+                      Text('Username', style: TextStyle( fontFamily: 'Poppins'))
                     ],
                   )
                 ],

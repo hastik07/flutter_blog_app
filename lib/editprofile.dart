@@ -73,7 +73,7 @@ class EditProfile extends StatelessWidget {
               const SizedBox(height: 40,),
               ElevatedButton(onPressed: () {
 
-              }, child: const Text('Update'))
+              }, child: const Text('Update', style: TextStyle( fontFamily: 'Poppins'),))
             ],
           ),
         ),

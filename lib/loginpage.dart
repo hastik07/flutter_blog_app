@@ -27,9 +27,9 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
     } on FirebaseAuthException catch(e) {
       if(e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text('No user found for that Email', style: TextStyle(fontSize: 18.0),)));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text('No user found for that Email', style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins'),)));
       } else if(e.code == 'wrong-password') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text('Wrong Password Provided by User', style: TextStyle(fontSize: 18.0),)));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text('Wrong Password Provided by User', style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins'),)));
       }
     }
   }
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       controller: emailController,
                       decoration: InputDecoration(
-                        hintText: 'Email',
+                        hintText: 'Email', suffixIcon: const Icon(Icons.email),
                         enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
                         fillColor: Colors.white,
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                       focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
-                      hintText: 'Password',
+                      hintText: 'Password', suffixIcon: const Icon(Icons.password),
                       errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
                       fillColor: Colors.white,
                       filled: true
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text('Forgot Password?', style: TextStyle(color: Colors.grey.shade600),),
+                        Text('Forgot Password ?', style: TextStyle(color: Colors.grey.shade600, fontFamily: 'Poppins'),),
                       ],
                     ),
                   ),
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Center(
                       child: Text(
                         'Sign In',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 15),
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 15, fontFamily: 'Poppins'),
                       ),
                     ),
                   ),
@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.grey[300],
                         )
                     ),
-                    const Text('Or continue with'),
+                    const Text('Or continue with', style: TextStyle( fontFamily: 'Poppins'),),
                     Expanded(
                         child: Divider(
                           thickness: 0.5,
@@ -166,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Not Registered?'),
+                    const Text('Not Registered?', style: TextStyle( fontFamily: 'Poppins'),),
                     const SizedBox(width: 4,),
                     GestureDetector(
                       onTap: () {
@@ -175,7 +175,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text(
                         'Register here',
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins'
                         ),
                       ),
                     )

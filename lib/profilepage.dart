@@ -9,7 +9,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Profile', style: TextStyle(fontWeight: FontWeight.w700),),
+        title: const Text('Profile', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700),),
         backgroundColor: Colors.yellow.shade800,
       ),
       backgroundColor: Colors.white,
@@ -53,7 +53,7 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(width: 20,),
                       const Padding(
                         padding: EdgeInsets.only(top: 12.0),
-                        child: Text('Hastik',style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                        child: Text('Hastik',style: TextStyle(fontFamily: 'Poppins', fontSize: 25, fontWeight: FontWeight.bold),),
                       )
                     ],
                   ),
@@ -61,11 +61,11 @@ class ProfilePage extends StatelessWidget {
                   const Row(
                     children: [
                       SizedBox(width: 15,),
-                      Text('Post', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                      SizedBox(width: 55,),
-                      Text('Followers', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                      Text('Post', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 18),),
                       SizedBox(width: 50,),
-                      Text('Following', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+                      Text('Followers', style: TextStyle(fontFamily: 'Poppins', fontSize: 18, fontWeight: FontWeight.bold),),
+                      SizedBox(width: 30,),
+                      Text('Following', style: TextStyle(fontFamily: 'Poppins', fontSize: 18, fontWeight: FontWeight.bold),)
                     ],
                   ),
                   const Row(
@@ -80,7 +80,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20,),
                   ElevatedButton(onPressed: () {
-                  }, child: const Text('Edit', style: TextStyle(fontSize: 18),))
+                  }, child: const Text('Edit', style: TextStyle(fontFamily: 'Poppins', fontSize: 18),))
                 ],
               ),
             ),

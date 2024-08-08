@@ -22,13 +22,13 @@ class _SignUpPageState extends State<SignUpPage> {
     if(password!=null && namecontroller.text!="" && emailcontroller.text!=""){
       try{
         UserCredential userCredential= await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Registered Successfully", style: TextStyle(fontSize: 20.0),)));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Registered Successfully", style: TextStyle(fontSize: 20.0, fontFamily: 'Poppins'),)));
         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
       } on FirebaseAuthException catch(e) {
         if(e.code == 'weak-password') {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text("Password Provided is too Weak", style: TextStyle(fontSize: 18.0),)));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text("Password Provided is too Weak", style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins'),)));
         } else if(e.code == 'email-already-in-use') {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text('Account already exist',style: TextStyle(fontSize: 18.0),)));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text('Account already exist',style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins'),)));
         }
       }
     }
@@ -46,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 Image.asset('assets/images/Blog nest logo.png', width: 130,),
                 const SizedBox(height: 5,),
-                Text("Welcome Back, you've been missed!", style: TextStyle(fontSize: 16, color: Colors.grey[700],),),
+                Text("Welcome Back, you've been missed!", style: TextStyle(fontSize: 16, fontFamily: 'Poppins' ,color: Colors.grey[700],),),
                 const SizedBox(height: 30,),
                 Form(
                   key: _formkey,
@@ -65,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
                         fillColor: Colors.white,
                         filled: true,
-                        hintText: 'Username',
+                        hintText: 'Username', suffixIcon: const Icon(Icons.supervised_user_circle)
                       ),
                     ),
                   ),
@@ -86,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
                         fillColor: Colors.white,
                         filled: true,
-                        hintText: 'Email'
+                        hintText: 'Email', suffixIcon: const Icon(Icons.email)
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
@@ -107,7 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
                         fillColor: Colors.white,
                         filled: true,
-                        hintText: 'Password',
+                        hintText: 'Password', suffixIcon: const Icon(Icons.password)
                     ),
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
@@ -135,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: const Center(
                       child: Text(
                         'Sign Up',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 15),
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 15, fontFamily: 'Poppins'),
                       ),
                     ),
                   ),
@@ -150,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           color: Colors.grey[300],
                         ),
                     ),
-                    const Text('Or continue with'),
+                    const Text('Or continue with', style: TextStyle( fontFamily: 'Poppins'),),
                     Expanded(
                       child: Divider(
                         thickness: 0.5,
@@ -174,7 +174,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Already have an account?'),
+                    const Text('Already have an account?', style: TextStyle( fontFamily: 'Poppins'),),
                     const SizedBox(width: 4,),
                     GestureDetector(
                       onTap: () {
@@ -183,7 +183,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: const Text(
                           'Login here',
                           style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.w800
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Poppins'
                           ),
                       ),
                     ),
