@@ -1,22 +1,69 @@
+import 'dart:io';
+import 'dart:developer' as devtools show log;
+import 'package:blog_app/homepage.dart';
+import 'package:blog_app/searchpage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:image_picker/image_picker.dart';
 
-class UploadPage extends StatelessWidget {
+class UploadPage extends StatefulWidget {
   const UploadPage({super.key});
 
+  @override
+  State<UploadPage> createState() => _UploadPageState();
+}
+
+class _UploadPageState extends State<UploadPage> {
+  File? _image;
+  final picker = ImagePicker();
+
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+      imageQuality: 80,
+    );
+    setState(() {
+      if(pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        devtools.log('No Image Picked');
+      }
+    });
+  }
+  int myIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: GNav(
-        tabBackgroundColor: Colors.grey.shade400,
-        padding: const EdgeInsets.all(16),
-        tabs: const [
-          GButton(icon: Icons.home),
-          GButton(icon: Icons.search),
-          GButton(icon: Icons.add_circle),
-          GButton(icon: Icons.notifications),
-          GButton(icon: Icons.person),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        onTap: (index) {
+          setState(() {
+            myIndex = index;
+          });
+        },
+        currentIndex: myIndex,
+        items: [
+          BottomNavigationBarItem(
+              icon: GestureDetector(onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+              }, child: const Icon(Icons.home)),
+              label: 'Home',
+              backgroundColor: Colors.orange
+          ),
+          BottomNavigationBarItem(
+              icon: GestureDetector(onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const UploadPage()));
+              }, child: const Icon(Icons.add_circle_outlined)),
+              label: 'Upload',
+              backgroundColor: Colors.red
+          ),
+          BottomNavigationBarItem(
+              icon: GestureDetector(onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
+              }, child: const Icon(Icons.search)),
+              label: 'Search',
+              backgroundColor: Colors.purpleAccent
+          ),
         ],
       ),
       body: SafeArea(
@@ -26,14 +73,35 @@ class UploadPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 10,),
-              const Row(
+              Row(
                 children: [
-                  SizedBox(width: 10),
-                  Icon(Icons.arrow_back_outlined, size: 30,),
+                  const SizedBox(width: 10),
+                  GestureDetector(onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                  }, child: const Icon(Icons.arrow_back_outlined, size: 30,)),
                 ],
               ),
               const SizedBox(height: 60,),
-              Image.asset('assets/images/Group 4.png'),
+              InkWell(
+                onTap: () {
+                  getImageFromGallery();
+                },
+                child: Container(
+                  height: 200,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10.0)
+                  ),
+                  child: _image != null ? Image.file(_image!.absolute, fit: BoxFit.cover,)
+                  : const Center(
+                    child: Icon(
+                        Icons.add_photo_alternate_outlined,
+                      size: 30,
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 40,),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
@@ -53,11 +121,26 @@ class UploadPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40,),
-              ElevatedButton(onPressed: () {
-              }, child: const Text(
-                  'Upload',
-                style: TextStyle(fontFamily: 'Poppins', fontSize: 20.0,),
-              ))
+              InkWell(
+                onTap: () {
+                  getImageFromGallery();
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(8)
+                  ),
+                  child: const Text(
+                    'Upload',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Colors.black,
+                      fontSize: 16
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -65,3 +148,4 @@ class UploadPage extends StatelessWidget {
     );
   }
 }
+

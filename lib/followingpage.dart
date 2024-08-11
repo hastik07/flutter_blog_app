@@ -1,21 +1,50 @@
+import 'package:blog_app/homepage.dart';
+import 'package:blog_app/searchpage.dart';
+import 'package:blog_app/uploadpage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
-class FollowingPage extends StatelessWidget {
+class FollowingPage extends StatefulWidget {
   const FollowingPage({super.key});
 
   @override
+  State<FollowingPage> createState() => _FollowingPageState();
+}
+
+class _FollowingPageState extends State<FollowingPage> {
+  int myIndex = 0;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: GNav(
-        tabBackgroundColor: Colors.grey.shade400,
-        padding: const EdgeInsets.all(16),
-        tabs: const [
-          GButton(icon: Icons.home),
-          GButton(icon: Icons.search),
-          GButton(icon: Icons.add_circle),
-          GButton(icon: Icons.notifications),
-          GButton(icon: Icons.person),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        onTap: (index) {
+          setState(() {
+            myIndex = index;
+          });
+        },
+        currentIndex: myIndex,
+        items: [
+          BottomNavigationBarItem(
+              icon: GestureDetector(onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+              }, child: const Icon(Icons.home)),
+              label: 'Home',
+              backgroundColor: Colors.orange
+          ),
+          BottomNavigationBarItem(
+              icon: GestureDetector(onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const UploadPage()));
+              }, child: const Icon(Icons.add_circle_outlined)),
+              label: 'Upload',
+              backgroundColor: Colors.red
+          ),
+          BottomNavigationBarItem(
+              icon: GestureDetector(onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
+              }, child: const Icon(Icons.search)),
+              label: 'Search',
+              backgroundColor: Colors.purpleAccent
+          ),
         ],
       ),
       body: SafeArea(
