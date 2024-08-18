@@ -21,6 +21,47 @@ class _ProfilePageState extends State<ProfilePage> {
         title: const Text('Profile', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700),),
         backgroundColor: Colors.yellow.shade800,
       ),
+      endDrawer: Drawer(
+        backgroundColor: Colors.yellow.shade800,
+        elevation: 3.0,
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+                accountName: Text('Hastik'),
+                accountEmail: Text('blognest@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white),
+            ),
+            ListTile(
+              title: Text('Settings'),
+              leading: Icon(Icons.settings),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfile()));
+              },
+            ),
+            Divider(
+              height:0.1,
+            ),
+            ListTile(
+              title: Text('Privacy Policy'),
+              leading: Icon(Icons.privacy_tip_rounded),
+            ),
+            Divider(
+              height:0.1,
+            ),
+            ListTile(
+              title: Text('Logout'),
+              leading: Icon(Icons.logout_rounded),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+            ),
+            Divider(
+              height:0.1,
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
