@@ -24,7 +24,9 @@ class _LoginPageState extends State<LoginPage> {
   userLogin() async {
     try{
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(
+
+      )));
     } on FirebaseAuthException catch(e) {
       if(e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.orangeAccent,content: Text('No user found for that Email', style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins'),)));

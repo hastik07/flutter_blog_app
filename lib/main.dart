@@ -1,4 +1,3 @@
-import 'package:blog_app/copy.dart';
 import 'package:blog_app/editprofile.dart';
 import 'package:blog_app/followerspage.dart';
 import 'package:blog_app/followingpage.dart';

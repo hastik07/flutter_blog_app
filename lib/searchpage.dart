@@ -1,6 +1,5 @@
-import 'package:blog_app/homepage.dart';
-import 'package:blog_app/uploadpage.dart';
 import 'package:flutter/material.dart';
+import 'package:blog_app/homepage.dart'; // Import your HomePage
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -10,137 +9,100 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  int myIndex = 2;
+  final TextEditingController _searchController = TextEditingController();
+  final List<String> _searchResults = [
+    'Blog 1',
+  ];
+
+  String _searchQuery = '';
+
+  List<String> _filterResults() {
+    if (_searchQuery.isEmpty) {
+      return _searchResults;
+    }
+    return _searchResults
+        .where((result) => result.toLowerCase().contains(_searchQuery.toLowerCase()))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.black),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage())); // Navigate back to the previous screen
+          },
+        ),
+        title: const Text(
+          'Search',
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'Poppins',
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Container(
-                    width: 350,
-                    height: 49,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade400,
+              // Search bar
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: TextField(
+                  controller: _searchController,
+                  onChanged: (query) {
+                    setState(() {
+                      _searchQuery = query;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    hintText: 'Search by title...',
+                    border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: const Row(
-                      children: [
-                        SizedBox(width: 15,),
-                        Icon(Icons.arrow_back_rounded),
-                        SizedBox(width: 15,),
-                        Text('Search by title...', style: TextStyle(fontFamily: 'Poppins'),)
-                      ],
+                      borderSide: BorderSide.none,
                     ),
                   ),
                 ),
               ),
-              Container(
-                width: 350,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 350,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 350,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 350,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 350,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 350,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Blog', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, height: 10)),
-                    )
-                  ],
+              const SizedBox(height: 16.0),
+              // Search results
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _filterResults().length,
+                  itemBuilder: (context, index) {
+                    final result = _filterResults()[index];
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.all(8.0),
+                        title: Text(
+                          result,
+                          style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onTap: () {
+                          // Handle item tap, e.g., navigate to details page
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

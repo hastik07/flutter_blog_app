@@ -1,7 +1,5 @@
 import 'package:blog_app/editprofile.dart';
 import 'package:blog_app/homepage.dart';
-import 'package:blog_app/searchpage.dart';
-import 'package:blog_app/uploadpage.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -12,13 +10,24 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int myIndex = 0;
+  final List<String> _blogs = [
+    'Blog 1',
+    'Blog 2',
+    'Blog 3',
+    'Blog 4',
+    'Blog 5',
+    // Add more blog titles as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Profile', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700),),
+        title: const Text(
+          'Profile',
+          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700),
+        ),
         backgroundColor: Colors.yellow.shade800,
       ),
       endDrawer: Drawer(
@@ -27,101 +36,153 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-                accountName: Text('Hastik'),
-                accountEmail: Text('blognest@gmail.com'),
+              accountName: const Text('Hastik'),
+              accountEmail: const Text('blognest@gmail.com'),
               currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white),
+                backgroundColor: Colors.white,
+                child: ClipOval(
+                  child: Image.asset('assets/images/Profile Picture.png', fit: BoxFit.cover),
+                ),
+              ),
             ),
             ListTile(
-              title: Text('Settings'),
-              leading: Icon(Icons.settings),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfile()));
+              title: const Text('Settings'),
+              leading: const Icon(Icons.settings),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EditProfile()),
+                );
               },
             ),
-            Divider(
-              height:0.1,
-            ),
+            const Divider(height: 0.1),
             ListTile(
-              title: Text('Privacy Policy'),
-              leading: Icon(Icons.privacy_tip_rounded),
+              title: const Text('Privacy Policy'),
+              leading: const Icon(Icons.privacy_tip_rounded),
             ),
-            Divider(
-              height:0.1,
-            ),
+            const Divider(height: 0.1),
             ListTile(
-              title: Text('Logout'),
-              leading: Icon(Icons.logout_rounded),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+              title: const Text('Logout'),
+              leading: const Icon(Icons.logout_rounded),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
               },
             ),
-            Divider(
-              height:0.1,
-            ),
+            const Divider(height: 0.1),
           ],
         ),
       ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 30,),
-            Center(
-              child: Container(
-                width: 329,
-                height: 234,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade500,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(width: 10,),
-                        Image.asset('assets/images/Profile Picture.png', width: 50, height: 70,),
-                        const SizedBox(width: 20,),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 12.0),
-                          child: Text('Hastik',style: TextStyle(fontFamily: 'Poppins', fontSize: 25, fontWeight: FontWeight.bold),),
-                        )
-                      ],
+            // Profile Header
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.grey.shade300,
+                    backgroundImage: AssetImage('assets/images/Profile Picture.png'),
+                  ),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Hastik',
+                        style: TextStyle(fontFamily: 'Poppins', fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          _buildStatColumn('Posts', '1'),
+                          _buildStatColumn('Followers', '1'),
+                          _buildStatColumn('Following', '1'),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const EditProfile()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          // Color: Colors.yellow.shade800,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        child: const Text(
+                          'Edit Profile',
+                          style: TextStyle(fontFamily: 'Poppins', fontSize: 18),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            // Blog List
+            Expanded(
+              child: ListView.builder(
+                itemCount: _blogs.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    const SizedBox(height: 20,),
-                    const Row(
-                      children: [
-                        SizedBox(width: 15,),
-                        Text('Post', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 18),),
-                        SizedBox(width: 50,),
-                        Text('Followers', style: TextStyle(fontFamily: 'Poppins', fontSize: 18, fontWeight: FontWeight.bold),),
-                        SizedBox(width: 30,),
-                        Text('Following', style: TextStyle(fontFamily: 'Poppins', fontSize: 18, fontWeight: FontWeight.bold),)
-                      ],
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(16.0),
+                      title: Text(
+                        _blogs[index],
+                        style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      onTap: () {
+                        // Handle blog item tap, e.g., navigate to blog details page
+                      },
                     ),
-                    const Row(
-                      children: [
-                        SizedBox(width: 30,),
-                        Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                        SizedBox(width: 100,),
-                        Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                        SizedBox(width: 120,),
-                        Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                      ],
-                    ),
-                    const SizedBox(height: 20,),
-                    ElevatedButton(onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfile()));
-                    }, child: const Text('Edit', style: TextStyle(fontFamily: 'Poppins', fontSize: 18),))
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildStatColumn(String title, String value) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: const TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+        Text(
+          title,
+          style: const TextStyle(fontFamily: 'Poppins', fontSize: 16),
+        ),
+      ],
     );
   }
 }
