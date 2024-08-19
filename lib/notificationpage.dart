@@ -16,38 +16,6 @@ class _NotificationPageState extends State<NotificationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        onTap: (index) {
-          setState(() {
-            myIndex = index;
-          });
-        },
-        currentIndex: myIndex,
-        items: [
-          BottomNavigationBarItem(
-              icon: GestureDetector(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-              }, child: const Icon(Icons.home)),
-              label: 'Home',
-              backgroundColor: Colors.orange
-          ),
-          BottomNavigationBarItem(
-              icon: GestureDetector(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const UploadPage()));
-              }, child: const Icon(Icons.add_circle_outlined)),
-              label: 'Upload',
-              backgroundColor: Colors.red
-          ),
-          BottomNavigationBarItem(
-              icon: GestureDetector(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
-              }, child: const Icon(Icons.search)),
-              label: 'Search',
-              backgroundColor: Colors.purpleAccent
-          ),
-        ],
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,

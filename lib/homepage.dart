@@ -1,3 +1,5 @@
+import 'package:blog_app/followerspage.dart';
+import 'package:blog_app/followingpage.dart';
 import 'package:blog_app/notificationpage.dart';
 import 'package:blog_app/profilepage.dart';
 import 'package:blog_app/searchpage.dart';
@@ -12,94 +14,180 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int myIndex = 0;
+  int _currentIndex = 0;
+  final PageController _pageController = PageController();
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  void _onTap(int index) {
+    _pageController.jumpToPage(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        onTap: (index) {
-          setState(() {
-            myIndex = index;
-          });
-        },
-        currentIndex: myIndex,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        onTap: _onTap,
         items: [
           BottomNavigationBarItem(
-              icon: GestureDetector(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-              }, child: const Icon(Icons.home)),
-              label: 'Home',
-              backgroundColor: Colors.orange
+            icon: const Icon(Icons.home, color: Colors.orange),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: GestureDetector(onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const UploadPage()));
-            }, child: const Icon(Icons.add_circle_outlined)),
+            icon: const Icon(Icons.add_circle_outlined, color: Colors.red),
             label: 'Upload',
-            backgroundColor: Colors.red
           ),
           BottomNavigationBarItem(
-            icon: GestureDetector(onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
-            }, child: const Icon(Icons.search)),
+            icon: const Icon(Icons.search, color: Colors.purpleAccent),
             label: 'Search',
-            backgroundColor: Colors.purpleAccent
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.notifications, color: Colors.blue),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person, color: Colors.green),
+            label: 'Profile',
           ),
         ],
       ),
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-                Row(
-                  children: [
-                    const SizedBox(width: 20,),
-                    GestureDetector(onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
-                    }, child: const Icon(Icons.notifications,)),
-                    const SizedBox(width: 100,),
-                    Image.asset('assets/images/Blog nest logo.png', width: 100, height: 100,),
-                    const SizedBox(width: 75,),
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage()));
-                        },
-                        child: Image.asset('assets/images/Profile Picture.png')
-                    )
-                  ],
-                ),
-              const SizedBox(height: 10,),
-              Row(
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        children: [
+          const HomeScreen(),
+          const UploadPage(),
+          const SearchPage(),
+          const NotificationPage(),
+          const ProfilePage(),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, // Align children to the start
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Space between widgets
                 children: [
-                  const SizedBox(width: 40,),
-                  Text('Recents', style: TextStyle( fontFamily: 'Poppins',color: Colors.yellow[900], fontWeight: FontWeight.bold),),
-                  const SizedBox(width: 70,),
-                  const Text('Following', style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
-                  const SizedBox(width: 70,),
-                  const Text('Followers',style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
+                    },
+                    child: const Icon(Icons.notifications, color: Colors.orange),
+                  ),
+                  Image.asset('assets/images/Blog nest logo.png', width: 100, height: 100),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage()));
+                    },
+                    child: Image.asset('assets/images/Profile Picture.png', width: 50, height: 50),
+                  ),
                 ],
               ),
-              const Divider(thickness: 2.0,),
-              SizedBox(
-                width: 380,
-                child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover,),
-              ),
-              SizedBox(
-                width: 380,
-                child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover,),
-              ),
-              SizedBox(
-                width: 380,
-                child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover,),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 3),
+            const _TabBar(),
+            const Divider(thickness: 2.0),
+            SizedBox(width: double.infinity, child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover)),
+            SizedBox(width: double.infinity, child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover)),
+            SizedBox(width: double.infinity, child: Image.asset('assets/images/Blog 1.png', fit: BoxFit.cover)),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class _TabBar extends StatefulWidget {
+  const _TabBar({super.key});
+
+  @override
+  State<_TabBar> createState() => __TabBarState();
+}
+
+class __TabBarState extends State<_TabBar> {
+  int _selectedTabIndex = 0;
+
+
+  void _onTabSelected(int index) {
+    setState(() {
+      _selectedTabIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Evenly space text items
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+          child: Text(
+            'Recents',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              color: _selectedTabIndex == 0 ? Colors.yellow[900] : Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FollowingPage()),
+            );
+          },
+          child: Text(
+            'Following',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              color: _selectedTabIndex == 1 ? Colors.yellow[900] : Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FollowersPage()),
+            );
+          },
+          child: Text(
+            'Followers',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              color: _selectedTabIndex == 2 ? Colors.yellow[900] : Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

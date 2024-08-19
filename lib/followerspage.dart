@@ -1,4 +1,7 @@
+import 'package:blog_app/followingpage.dart';
 import 'package:blog_app/homepage.dart';
+import 'package:blog_app/notificationpage.dart';
+import 'package:blog_app/profilepage.dart';
 import 'package:blog_app/searchpage.dart';
 import 'package:blog_app/uploadpage.dart';
 import 'package:flutter/material.dart';
@@ -11,39 +14,46 @@ class FollowersPage extends StatefulWidget {
 }
 
 class _FollowersPageState extends State<FollowersPage> {
-  int myIndex = 0;
+  int _currentIndex = 0;
+  final PageController _pageController = PageController();
+
+  void _onPageChanged(int index) {
+  setState(() {
+  _currentIndex = index;
+  });
+  }
+
+  void _onTap(int index) {
+  _pageController.jumpToPage(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        onTap: (index) {
-          setState(() {
-            myIndex = index;
-          });
-        },
-        currentIndex: myIndex,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        onTap: _onTap,
         items: [
           BottomNavigationBarItem(
-              icon: GestureDetector(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-              }, child: const Icon(Icons.home)),
-              label: 'Home',
-              backgroundColor: Colors.orange
+            icon: const Icon(Icons.home, color: Colors.orange),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-              icon: GestureDetector(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const UploadPage()));
-              }, child: const Icon(Icons.add_circle_outlined)),
-              label: 'Upload',
-              backgroundColor: Colors.red
+            icon: const Icon(Icons.add_circle_outlined, color: Colors.red),
+            label: 'Upload',
           ),
           BottomNavigationBarItem(
-              icon: GestureDetector(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
-              }, child: const Icon(Icons.search)),
-              label: 'Search',
-              backgroundColor: Colors.purpleAccent
+            icon: const Icon(Icons.search, color: Colors.purpleAccent),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.notifications, color: Colors.blue),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person, color: Colors.green),
+            label: 'Profile',
           ),
         ],
       ),
@@ -52,24 +62,58 @@ class _FollowersPageState extends State<FollowersPage> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              Row(
-                children: [
-                  Image.asset('assets/images/icon.png', width: 50, height: 50,),
-                  const SizedBox(width: 100,),
-                  Image.asset('assets/images/Blog nest logo.png', width: 100, height: 100,),
-                  const SizedBox(width: 75,),
-                  Image.asset('assets/images/Profile Picture.png')
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Space between widgets
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
+                      },
+                      child: const Icon(Icons.notifications, color: Colors.orange),
+                    ),
+                    Image.asset('assets/images/Blog nest logo.png', width: 100, height: 100),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage()));
+                      },
+                      child: Image.asset('assets/images/Profile Picture.png', width: 50, height: 50),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 3,),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Evenly space text items
                 children: [
-                  const SizedBox(width: 40,),
-                  const Text('Recents', style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
-                  const SizedBox(width: 70,),
-                  const Text('Following', style: TextStyle( fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
-                  const SizedBox(width: 70,),
-                  Text('Followers',style: TextStyle( fontFamily: 'Poppins',color: Colors.yellow[900],fontWeight: FontWeight.bold),),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                    },
+                    child: Text(
+                      'Recents',
+                      style: TextStyle(fontFamily: 'Poppins', color: Colors.yellow[900], fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                    },
+                    child: Text(
+                      'Following',
+                      style: const TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowersPage()));
+                    },
+                    child: Text(
+                      'Followers',
+                      style: const TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ],
               ),
               const Divider(thickness: 2.0,),
@@ -256,3 +300,81 @@ class _FollowersPageState extends State<FollowersPage> {
     );
   }
 }
+
+
+// class _TabBar extends StatefulWidget {
+//   const _TabBar({super.key});
+//
+//   @override
+//   State<_TabBar> createState() => __TabBarState();
+// }
+//
+// class __TabBarState extends State<_TabBar> {
+//   int _selectedTabIndex = 0;
+//
+//   void _onTabSelected(int index) {
+//     setState(() {
+//       _selectedTabIndex = index;
+//     });
+//     if(index == 0){
+//       Navigator.push(
+//         context,
+//         MaterialPageRoute(builder: (context) => HomePage()),
+//       );
+//     }
+//     if(index == 1){
+//       Navigator.push(
+//         context,
+//         MaterialPageRoute(builder: (context) =>  FollowingPage()),
+//       );
+//     }
+//     if(index == 2){
+//       Navigator.push(
+//         context,
+//         MaterialPageRoute(builder: (context) => FollowersPage()),
+//       );
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Evenly space text items
+//       children: [
+//         GestureDetector(
+//           onTap: () => _onTabSelected(0),
+//           child: Text(
+//             'Recents',
+//             style: TextStyle(
+//               fontFamily: 'Poppins',
+//               color: _selectedTabIndex == 0 ? Colors.yellow[900] : Colors.black,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//         ),
+//         GestureDetector(
+//           onTap: () => _onTabSelected(1),
+//           child: Text(
+//             'Following',
+//             style: TextStyle(
+//               fontFamily: 'Poppins',
+//               color: _selectedTabIndex == 1 ? Colors.yellow[900] : Colors.black,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//         ),
+//         GestureDetector(
+//           onTap: () => _onTabSelected(2),
+//           child: Text(
+//             'Followers',
+//             style: TextStyle(
+//               fontFamily: 'Poppins',
+//               color: _selectedTabIndex == 2 ? Colors.yellow[900] : Colors.black,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
