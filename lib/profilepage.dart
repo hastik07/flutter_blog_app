@@ -1,5 +1,9 @@
 import 'package:blog_app/editprofile.dart';
+import 'package:blog_app/followerspage.dart';
+import 'package:blog_app/followingpage.dart';
 import 'package:blog_app/homepage.dart';
+import 'package:blog_app/loginpage.dart';
+import 'package:blog_app/settingpage.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -29,9 +33,17 @@ class _ProfilePageState extends State<ProfilePage> {
           style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700),
         ),
         backgroundColor: Colors.yellow.shade800,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+          },
+        ),
       ),
       endDrawer: Drawer(
-        backgroundColor: Colors.yellow.shade800,
         elevation: 3.0,
         child: Column(
           children: [
@@ -51,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const EditProfile()),
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
                 );
               },
             ),
@@ -67,11 +79,34 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               },
             ),
             const Divider(height: 0.1),
+            ListTile(
+              leading: const Icon(Icons.person_add),
+              title: const Text('Invite Friends'),
+              onTap: () {
+                // Handle invite friends functionality
+              },
+            ),
+            const Divider(height: 0.1),
+            ListTile(
+              leading: const Icon(Icons.link),
+              title: const Text('Create WhatsApp Link'),
+              onTap: () {
+                // Handle invite friends functionality
+              },
+            ),
+            const Divider(height: 0.1),
+            ListTile(
+              leading: const Icon(Icons.link),
+              title: const Text('Create Telegram Link'),
+              onTap: () {
+                // Handle invite friends functionality
+              },
+            ),
           ],
         ),
       ),
@@ -107,8 +142,24 @@ class _ProfilePageState extends State<ProfilePage> {
                       Row(
                         children: [
                           _buildStatColumn('Posts', '1'),
-                          _buildStatColumn('Followers', '1'),
-                          _buildStatColumn('Following', '1'),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const FollowersPage()),
+                              );
+                            },
+                            child: _buildStatColumn('Followers', '1'),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const FollowingPage()),
+                              );
+                            },
+                            child: _buildStatColumn('Following', '1'),
+                          )
                         ],
                       ),
                       const SizedBox(height: 16),

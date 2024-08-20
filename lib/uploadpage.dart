@@ -16,6 +16,21 @@ class _UploadPageState extends State<UploadPage> {
   final picker = ImagePicker();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        _dateController.text = "${pickedDate.toLocal()}".split(' ')[0];
+      });
+    }
+  }
 
   Future<void> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(
@@ -76,7 +91,7 @@ class _UploadPageState extends State<UploadPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 150),
+              const SizedBox(height: 130),
               InkWell(
                 onTap: () {
                   getImageFromGallery();
@@ -107,6 +122,23 @@ class _UploadPageState extends State<UploadPage> {
                     hintText: 'Title',
                     border: OutlineInputBorder(),
                   ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child:TextField(
+                  controller: _dateController,
+                  decoration: InputDecoration(
+                    hintText: 'Select Date',
+                    border: const OutlineInputBorder(),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.calendar_today),
+                      onPressed: () => _selectDate(context),
+                    ),
+                  ),
+                  readOnly: true,
+                  onTap: () => _selectDate(context),
                 ),
               ),
               const SizedBox(height: 20),

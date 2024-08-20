@@ -8,6 +8,7 @@ import 'package:blog_app/loginpage.dart';
 import 'package:blog_app/notificationpage.dart';
 import 'package:blog_app/profilepage.dart';
 import 'package:blog_app/searchpage.dart';
+import 'package:blog_app/settingpage.dart';
 import 'package:blog_app/uploadpage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

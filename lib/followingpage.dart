@@ -1,10 +1,6 @@
 import 'package:blog_app/followerspage.dart';
-import 'package:blog_app/followingpage.dart';
-import 'package:blog_app/homepage.dart';
-import 'package:blog_app/notificationpage.dart';
 import 'package:blog_app/profilepage.dart';
-import 'package:blog_app/searchpage.dart';
-import 'package:blog_app/uploadpage.dart';
+import 'package:blog_app/notificationpage.dart';
 import 'package:flutter/material.dart';
 
 class FollowingPage extends StatefulWidget {
@@ -69,13 +65,13 @@ class _FollowingPageState extends State<FollowingPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Space between widgets
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
                       },
-                      child: const Icon(Icons.notifications, color: Colors.orange),
+                      child: const Icon(Icons.arrow_back, color: Colors.orange),
                     ),
                     Image.asset('assets/images/Blog nest logo.png', width: 100, height: 100),
                     GestureDetector(
@@ -93,20 +89,11 @@ class _FollowingPageState extends State<FollowingPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-                    },
-                    child: Text(
-                      'Recents',
-                      style: TextStyle(fontFamily: 'Poppins', color: Colors.yellow[900], fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowingPage()));
                     },
                     child: Text(
                       'Following',
-                      style: const TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, color: Colors.orange),
                     ),
                   ),
                   GestureDetector(
@@ -121,14 +108,14 @@ class _FollowingPageState extends State<FollowingPage> {
                 ],
               ),
               const Divider(thickness: 2.0),
-              _buildFollowerRow(),
-              _buildFollowerRow(),
-              _buildFollowerRow(),
-              _buildFollowerRow(),
-              _buildFollowerRow(),
-              _buildFollowerRow(),
-              _buildFollowerRow(),
-              _buildFollowerRow(),
+              ListView.builder(
+                shrinkWrap: true,  // Only as big as its children
+                physics: const NeverScrollableScrollPhysics(),  // Prevent scrolling within this ListView
+                itemCount: 10,  // Number of followers to display
+                itemBuilder: (context, index) {
+                  return _buildFollowerRow();
+                },
+              ),
             ],
           ),
         ),
@@ -137,27 +124,45 @@ class _FollowingPageState extends State<FollowingPage> {
   }
 
   Widget _buildFollowerRow() {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: SizedBox(
-            width: 60,
-            height: 60,
-            child: Image.asset('assets/images/Profile Picture.png'),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage('assets/images/Profile Picture.png'),
           ),
-        ),
-        const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.0),
-              child: Text('Hastik', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 20)),
+          const SizedBox(width: 15),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'John Doe',
+                style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 18),
+              ),
+              const Text(
+                '@johndoe',
+                style: TextStyle(fontFamily: 'Poppins', color: Colors.grey),
+              ),
+            ],
+          ),
+          const Spacer(),
+          TextButton(
+            onPressed: () {
+              // Handle the "Unfollow" action
+            },
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.redAccent,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             ),
-            Text('Username', style: TextStyle(fontFamily: 'Poppins')),
-          ],
-        ),
-      ],
+            child: const Text(
+              'Unfollow',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
