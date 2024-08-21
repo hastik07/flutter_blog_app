@@ -1,4 +1,5 @@
 import 'package:blog_app/followerspage.dart';
+import 'package:blog_app/homepage.dart';
 import 'package:blog_app/profilepage.dart';
 import 'package:blog_app/notificationpage.dart';
 import 'package:flutter/material.dart';
@@ -11,52 +12,10 @@ class FollowingPage extends StatefulWidget {
 }
 
 class _FollowingPageState extends State<FollowingPage> {
-  int _currentIndex = 0;
-  final PageController _pageController = PageController();
-
-  void _onPageChanged(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  void _onTap(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-    _pageController.jumpToPage(index);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        onTap: _onTap,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home, color: Colors.orange),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.add_circle_outlined, color: Colors.red),
-            label: 'Upload',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.search, color: Colors.purpleAccent),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.notifications, color: Colors.blue),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.person, color: Colors.green),
-            label: 'Profile',
-          ),
-        ],
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -69,7 +28,7 @@ class _FollowingPageState extends State<FollowingPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
                       },
                       child: const Icon(Icons.arrow_back, color: Colors.orange),
                     ),

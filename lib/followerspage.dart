@@ -12,49 +12,10 @@ class FollowersPage extends StatefulWidget {
 }
 
 class _FollowersPageState extends State<FollowersPage> {
-  int _currentIndex = 0;
-  final PageController _pageController = PageController();
-
-  void _onPageChanged(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  void _onTap(int index) {
-    _pageController.jumpToPage(index);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        onTap: _onTap,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home, color: Colors.orange),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.add_circle_outlined, color: Colors.red),
-            label: 'Upload',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.search, color: Colors.purpleAccent),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.notifications, color: Colors.blue),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.person, color: Colors.green),
-            label: 'Profile',
-          ),
-        ],
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,

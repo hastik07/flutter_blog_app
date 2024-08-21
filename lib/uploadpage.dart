@@ -71,7 +71,6 @@ class _UploadPageState extends State<UploadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -87,7 +86,7 @@ class _UploadPageState extends State<UploadPage> {
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
                     },
-                    child: const Icon(Icons.arrow_back_outlined, size: 30),
+                    child: const Icon(Icons.arrow_back_rounded, color: Colors.orangeAccent),
                   ),
                 ],
               ),
@@ -100,7 +99,7 @@ class _UploadPageState extends State<UploadPage> {
                   height: 200,
                   width: 300,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
+                    border: Border.all(color: Colors.blueGrey),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: _image != null

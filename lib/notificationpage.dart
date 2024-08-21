@@ -12,14 +12,12 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_outlined, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_outlined, color: Colors.orange),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage() ));
           },
         ),
         title: const Text(
@@ -79,4 +77,5 @@ class _NotificationPageState extends State<NotificationPage> {
     );
   }
 }
+
 

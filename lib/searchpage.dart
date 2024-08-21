@@ -28,12 +28,10 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.orangeAccent),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage())); // Navigate back to the previous screen
           },
@@ -55,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
               // Search bar
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
+                  color: Colors.black26,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: TextField(
@@ -85,7 +83,7 @@ class _SearchPageState extends State<SearchPage> {
                     return Container(
                       margin: const EdgeInsets.only(bottom: 10.0),
                       decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
+                        color: Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: ListTile(

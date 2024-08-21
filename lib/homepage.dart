@@ -1,3 +1,4 @@
+import 'package:blog_app/newssummary.dart';
 import 'package:flutter/material.dart';
 import 'package:blog_app/followerspage.dart';
 import 'package:blog_app/followingpage.dart';
@@ -38,31 +39,31 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: _currentIndex == 0
                 ? _buildHighlightedIcon(Icons.home, Colors.orange)
-                : const Icon(Icons.home, color: Colors.orange),
+                : const Icon(Icons.home, color: Colors.grey),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 1
-                ? _buildHighlightedIcon(Icons.add_circle_outlined, Colors.red)
-                : const Icon(Icons.add_circle_outlined, color: Colors.red),
+                ? _buildHighlightedIcon(Icons.add_circle_outlined, Colors.orange)
+                : const Icon(Icons.add_circle_outlined, color: Colors.grey),
             label: 'Upload',
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 2
-                ? _buildHighlightedIcon(Icons.search, Colors.purpleAccent)
-                : const Icon(Icons.search, color: Colors.purpleAccent),
+                ? _buildHighlightedIcon(Icons.search, Colors.orange)
+                : const Icon(Icons.search, color: Colors.grey),
             label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 3
-                ? _buildHighlightedIcon(Icons.notifications, Colors.blue)
-                : const Icon(Icons.notifications, color: Colors.blue),
+                ? _buildHighlightedIcon(Icons.notifications, Colors.orange)
+                : const Icon(Icons.notifications, color: Colors.grey),
             label: 'Notifications',
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 4
-                ? _buildHighlightedIcon(Icons.person, Colors.green)
-                : const Icon(Icons.person, color: Colors.green),
+                ? _buildHighlightedIcon(Icons.person, Colors.orange)
+                : const Icon(Icons.person, color: Colors.grey),
             label: 'Profile',
           ),
         ],
@@ -108,16 +109,19 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0, vertical: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => const NotificationPage()));
+                          context, MaterialPageRoute(
+                          builder: (context) => const NotificationPage()));
                     },
-                    child: const Icon(Icons.notifications, color: Colors.orange),
+                    child: const Icon(
+                        Icons.notifications, color: Colors.orange),
                   ),
                   Image.asset(
                     'assets/images/Blog nest logo.png',
@@ -127,7 +131,8 @@ class HomeScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => const ProfilePage()));
+                          MaterialPageRoute(
+                              builder: (context) => const ProfilePage()));
                     },
                     child: Image.asset(
                       'assets/images/Profile Picture.png',
@@ -138,15 +143,38 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: const Text(
-                'Upcoming TCS News',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+            const SizedBox(height: 3,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                  },
+                  child: const Text(
+                    'Recents',
+                    style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, color: Colors.orange),
+                  ),
                 ),
-              ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowingPage()));
+                  },
+                  child: const Text(
+                    'Following',
+                    style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowersPage()));
+                  },
+                  child: const Text(
+                    'Followers',
+                    style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             const Divider(thickness: 1.0),
@@ -160,186 +188,128 @@ class HomeScreen extends StatelessWidget {
                   postedDate: 'August 20, 2024',
                   profile: 'John Doe',
                   authorName: 'Technology Analyst',
+                  context: context,
+                  newsId: 1, // Unique ID for each news item
                 ),
                 _buildNewsCard(
                   headline: 'TCS Q2 Results Announced',
                   postedDate: 'August 18, 2024',
                   profile: 'Jane Smith',
                   authorName: 'Finance Editor',
+                  context: context,
+                  newsId: 2,
                 ),
                 _buildNewsCard(
                   headline: 'TCS Partners with Global Bank',
                   postedDate: 'August 15, 2024',
                   profile: 'Rahul Patel',
                   authorName: 'Business Correspondent',
+                  context: context,
+                  newsId: 2,
                 ),
                 _buildNewsCard(
                   headline: 'TCS Expands in Europe',
                   postedDate: 'August 10, 2024',
                   profile: 'Emily Davis',
                   authorName: 'International Reporter',
+                  context: context,
+                  newsId: 2,
                 ),
                 _buildNewsCard(
                   headline: 'TCS to Hire 10,000 Engineers',
                   postedDate: 'August 5, 2024',
                   profile: 'Michael Brown',
                   authorName: 'HR Specialist',
+                  context: context,
+                  newsId: 2,
+                ),
+                _buildNewsCard(
+                  headline: 'TCS Q2 Results Announced',
+                  postedDate: 'August 18, 2024',
+                  profile: 'Jane Smith',
+                  authorName: 'Finance Editor',
+                  context: context,
+                  newsId: 2,
+                ),
+                _buildNewsCard(
+                  headline: 'TCS Q2 Results Announced',
+                  postedDate: 'August 18, 2024',
+                  profile: 'Jane Smith',
+                  authorName: 'Finance Editor',
+                  context: context,
+                  newsId: 2,
                 ),
               ],
-            ),
+            )
           ],
         ),
       ),
     );
   }
-
   Widget _buildNewsCard({
     required String headline,
     required String postedDate,
     required String profile,
     required String authorName,
+    required BuildContext context, // Pass the context to this method
+    required int newsId, // Use an ID to identify each news item
   }) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              headline,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        switch (newsId) {
+          case 1:
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SummaryPage(),
               ),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  postedDate,
-                  style: TextStyle(color: Colors.grey[600]),
+            );
+            break;
+          case 2:
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SummaryPage1(),
+              ),
+            );
+            break;
+        // Add more cases for other news pages
+          default:
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SummaryPage2(),
+              ),
+            );
+        }
+      },
+      child: Card(
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                headline,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                Text(
-                  '$profile - $authorName',
-                  style: TextStyle(color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '$postedDate - by $authorName',
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
                 ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    // Handle wishlist action
-                  },
-                  icon: const Icon(Icons.bookmark_border),
-                  label: const Text('Wishlist'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    foregroundColor: Colors.white,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    // Handle share action
-                  },
-                  icon: const Icon(Icons.share),
-                  label: const Text('Share'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-}
 
-class _TabBar extends StatefulWidget {
-  const _TabBar({super.key});
-
-  @override
-  State<_TabBar> createState() => __TabBarState();
-}
-
-class __TabBarState extends State<_TabBar> {
-  int _selectedTabIndex = 0;
-
-  void _onTabSelected(int index) {
-    setState(() {
-      _selectedTabIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          GestureDetector(
-            onTap: () {
-              _onTabSelected(0);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
-            },
-            child: Text(
-              'Recents',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                color: _selectedTabIndex == 0 ? Colors.orange : Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              _onTabSelected(1);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const FollowingPage()),
-              );
-            },
-            child: Text(
-              'Following',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                color: _selectedTabIndex == 1 ? Colors.orange : Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              _onTabSelected(2);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const FollowersPage()),
-              );
-            },
-            child: Text(
-              'Followers',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                color: _selectedTabIndex == 2 ? Colors.orange : Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

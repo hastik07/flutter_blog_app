@@ -5,6 +5,7 @@ import 'package:blog_app/forgot_password.dart';
 import 'package:blog_app/homepage.dart';
 import 'package:blog_app/intropage.dart';
 import 'package:blog_app/loginpage.dart';
+import 'package:blog_app/newssummary.dart';
 import 'package:blog_app/notificationpage.dart';
 import 'package:blog_app/profilepage.dart';
 import 'package:blog_app/searchpage.dart';
@@ -28,10 +29,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
       home: Center(child: const HomePage()),
     );
   }

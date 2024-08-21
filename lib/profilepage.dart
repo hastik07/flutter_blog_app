@@ -3,6 +3,7 @@ import 'package:blog_app/followerspage.dart';
 import 'package:blog_app/followingpage.dart';
 import 'package:blog_app/homepage.dart';
 import 'package:blog_app/loginpage.dart';
+import 'package:blog_app/newssummary.dart';
 import 'package:blog_app/settingpage.dart';
 import 'package:flutter/material.dart';
 
@@ -15,11 +16,11 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final List<String> _blogs = [
-    'Blog 1',
-    'Blog 2',
-    'Blog 3',
-    'Blog 4',
-    'Blog 5',
+    'TCS Launches New AI Service',
+    'TCS Q2 Results Announced',
+    'TCS Partners with Global Bank',
+    'TCS Expands in Europe',
+    'TCS to Hire 10,000 Engineers',
     // Add more blog titles as needed
   ];
 
@@ -110,7 +111,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
       ),
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -119,7 +119,6 @@ class _ProfilePageState extends State<ProfilePage> {
               width: double.infinity,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(
@@ -127,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.grey.shade300,
+                    backgroundColor: Colors.black,
                     backgroundImage: AssetImage('assets/images/Profile Picture.png'),
                   ),
                   const SizedBox(width: 16),
@@ -138,8 +137,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         'Hastik',
                         style: TextStyle(fontFamily: 'Poppins', fontSize: 25, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 8,width: 5,),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           _buildStatColumn('Posts', '1'),
                           GestureDetector(
@@ -162,7 +162,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           )
                         ],
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 16,width: 8,),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -195,8 +195,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color:  Colors.grey,
+                      )
                     ),
                     child: ListTile(
                       contentPadding: const EdgeInsets.all(16.0),
@@ -209,7 +212,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       onTap: () {
-                        // Handle blog item tap, e.g., navigate to blog details page
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SummaryPage()));// Handle blog item tap, e.g., navigate to blog details page
                       },
                     ),
                   );
