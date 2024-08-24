@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:blog_app/homepage.dart';
-import 'package:blog_app/profilepage.dart';
 
 class UploadPage extends StatefulWidget {
   const UploadPage({super.key});
@@ -68,29 +67,37 @@ class _UploadPageState extends State<UploadPage> {
     }
   }
 
+  void _handleDownload() {
+    // Add the functionality for downloading or saving content offline
+    _showSnackBar(context, 'Content saved offline', color: Colors.blue);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orangeAccent,
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+          },
+          child: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.download_outlined, color: Colors.white),
+            onPressed: _handleDownload,
+          ),
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(width: 5),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-                    },
-                    child: const Icon(Icons.arrow_back_rounded, color: Colors.orangeAccent),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 130),
+              const SizedBox(height: 70),
               InkWell(
                 onTap: () {
                   getImageFromGallery();
@@ -117,7 +124,7 @@ class _UploadPageState extends State<UploadPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: TextField(
                   controller: _titleController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Title',
                     border: OutlineInputBorder(),
                   ),
@@ -126,7 +133,7 @@ class _UploadPageState extends State<UploadPage> {
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child:TextField(
+                child: TextField(
                   controller: _dateController,
                   decoration: InputDecoration(
                     hintText: 'Select Date',
@@ -145,7 +152,7 @@ class _UploadPageState extends State<UploadPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: TextField(
                   controller: _descriptionController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Description',
                     border: OutlineInputBorder(),
                   ),

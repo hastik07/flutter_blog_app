@@ -15,6 +15,7 @@ class ThemeClass {
   );
   static ThemeData darkTheme = ThemeData(
       primaryColor: ThemeData.light().scaffoldBackgroundColor,
+      primaryTextTheme: ThemeData().textTheme,
       colorScheme: const ColorScheme.light().copyWith(
         primary: _themeClass.lightPrimaryColor,
         secondary: _themeClass.lightPrimaryColor,

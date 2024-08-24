@@ -14,11 +14,42 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   Uint8List? _image;
 
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
   void selectImage() async {
     Uint8List img = await pickImage(ImageSource.gallery);
     setState(() {
       _image = img;
     });
+  }
+
+  void saveChanges() {
+    // Validate input fields (you can add more validation as needed)
+    if (_firstNameController.text.isEmpty ||
+        _lastNameController.text.isEmpty ||
+        _usernameController.text.isEmpty ||
+        _emailController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please fill out all fields'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    // Handle save action (e.g., send data to server or update local database)
+
+    // Display success message
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Successfully Saved'),
+        backgroundColor: Colors.green,
+      ),
+    );
   }
 
   @override
@@ -67,7 +98,8 @@ class _EditProfileState extends State<EditProfile> {
                     right: 0,
                     child: IconButton(
                       onPressed: selectImage,
-                      icon: const Icon(Icons.add_a_photo, size: 30, color: Colors.black),
+                      icon: const Icon(Icons.add_a_photo,
+                          size: 30, color: Colors.blue),
                       color: Colors.white,
                       padding: const EdgeInsets.all(8.0),
                       constraints: const BoxConstraints(),
@@ -77,29 +109,33 @@ class _EditProfileState extends State<EditProfile> {
               ),
               const SizedBox(height: 20),
               // Input Fields
-              _buildTextField('First Name'),
+              _buildTextField('First Name', _firstNameController),
               const SizedBox(height: 16),
-              _buildTextField('Last Name'),
+              _buildTextField('Last Name', _lastNameController),
               const SizedBox(height: 16),
-              _buildTextField('Username'),
+              _buildTextField('Username', _usernameController),
               const SizedBox(height: 16),
-              _buildTextField('Email', keyboardType: TextInputType.emailAddress),
+              _buildTextField('Email', _emailController,
+                  keyboardType: TextInputType.emailAddress),
               const SizedBox(height: 40),
               // Save Button
               ElevatedButton(
-                onPressed: () {
-                  // Handle save action
-                },
+                onPressed: saveChanges,
                 style: ElevatedButton.styleFrom(
-                  // primary: Colors.yellow.shade800,
+                  backgroundColor: Colors.yellow.shade800, // Set your desired color here
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 15.0, horizontal: 30.0),
                 ),
                 child: const Text(
                   'Save Changes',
-                  style: TextStyle(fontFamily: 'Poppins', fontSize: 18, color: Colors.white),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 18,
+                    color: Colors.white, // Optional: Set text color if needed
+                  ),
                 ),
               ),
             ],
@@ -109,8 +145,11 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  Widget _buildTextField(String hintText, {TextInputType keyboardType = TextInputType.text}) {
+  Widget _buildTextField(
+      String hintText, TextEditingController controller,
+      {TextInputType keyboardType = TextInputType.text}) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: Icon(_getIconForHint(hintText)),
@@ -119,7 +158,7 @@ class _EditProfileState extends State<EditProfile> {
           borderSide: BorderSide.none,
         ),
         filled: true,
-        fillColor: Colors.grey.shade200,
+        fillColor: Colors.black12,
       ),
       keyboardType: keyboardType,
     );

@@ -21,6 +21,11 @@ class _ProfilePageState extends State<ProfilePage> {
     'TCS Partners with Global Bank',
     'TCS Expands in Europe',
     'TCS to Hire 10,000 Engineers',
+    'TCS Launches New AI Service',
+    'TCS Q2 Results Announced',
+    'TCS Partners with Global Bank',
+    'TCS Expands in Europe',
+    'TCS to Hire 10,000 Engineers',
     // Add more blog titles as needed
   ];
 
@@ -49,8 +54,8 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: const Text('Hastik'),
-              accountEmail: const Text('blognest@gmail.com'),
+              accountName: const Text('Mohanapriya'),
+              accountEmail: const Text('Mohanapriya@gmail.com477s@gmail.com'),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: ClipOval(
@@ -129,15 +134,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     backgroundColor: Colors.black,
                     backgroundImage: AssetImage('assets/images/Profile Picture.png'),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 10),
+                  const Divider(thickness: 1.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Hastik',
+                        'Mohanapriya',
                         style: TextStyle(fontFamily: 'Poppins', fontSize: 25, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 8,width: 5,),
+                      const SizedBox(height: 8, width: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -159,10 +165,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               );
                             },
                             child: _buildStatColumn('Following', '1'),
-                          )
+                          ),
                         ],
                       ),
-                      const SizedBox(height: 16,width: 8,),
+                      const SizedBox(height: 12, width: 8),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -171,14 +177,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          // Color: Colors.yellow.shade800,
+                          backgroundColor: Colors.yellow.shade800,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
                         child: const Text(
                           'Edit Profile',
-                          style: TextStyle(fontFamily: 'Poppins', fontSize: 18),
+                          style: TextStyle(fontFamily: 'Poppins', fontSize: 18,color:Colors.black),
                         ),
                       ),
                     ],
@@ -192,14 +198,11 @@ class _ProfilePageState extends State<ProfilePage> {
               child: ListView.builder(
                 itemCount: _blogs.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color:  Colors.grey,
-                      )
+                  return Card(
+                    margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 14.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: Colors.grey.shade300),
                     ),
                     child: ListTile(
                       contentPadding: const EdgeInsets.all(16.0),
@@ -211,8 +214,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 16,
                         ),
                       ),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.share),
+                        onPressed: () {
+                          // Handle share functionality
+                        },
+                      ),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SummaryPage()));// Handle blog item tap, e.g., navigate to blog details page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SummaryPage()),
+                        ); // Handle blog item tap
                       },
                     ),
                   );

@@ -96,11 +96,11 @@ class _FollowersPageState extends State<FollowersPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'John Doe',
+                'Mohanapriya',
                 style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 18),
               ),
               const Text(
-                '@johndoe',
+                '@Mohanapriya',
                 style: TextStyle(fontFamily: 'Poppins', color: Colors.grey),
               ),
             ],

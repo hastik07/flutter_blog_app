@@ -10,19 +10,29 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _searchController = TextEditingController();
-  final List<String> _searchResults = [
-    'Blog 1',
-  ];
-
   String _searchQuery = '';
+  final List<String> _items = [
+    'Flutter Basics',
+    'State Management',
+    'Dart Programming',
+    'Responsive UI',
+    'Animations in Flutter',
+    'Networking with HTTP',
+    'Firebase Integration',
+    'Flutter Widgets',
+    'Custom Themes',
+    'Routing in Flutter',
+  ]; // Sample list of searchable items
 
   List<String> _filterResults() {
     if (_searchQuery.isEmpty) {
-      return _searchResults;
+      return _items;
+    } else {
+      return _items
+          .where((item) =>
+          item.toLowerCase().contains(_searchQuery.toLowerCase()))
+          .toList();
     }
-    return _searchResults
-        .where((result) => result.toLowerCase().contains(_searchQuery.toLowerCase()))
-        .toList();
   }
 
   @override
@@ -33,7 +43,8 @@ class _SearchPageState extends State<SearchPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_rounded, color: Colors.orangeAccent),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage())); // Navigate back to the previous screen
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => const HomePage())); // Navigate back to the previous screen
           },
         ),
         title: const Text(
@@ -53,8 +64,11 @@ class _SearchPageState extends State<SearchPage> {
               // Search bar
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.black26,
                   borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all( // This defines the border
+                    color: Colors.black, // Set the border color to black
+                    width: 1.0, // Set the border width
+                  ),
                 ),
                 child: TextField(
                   controller: _searchController,
@@ -83,7 +97,6 @@ class _SearchPageState extends State<SearchPage> {
                     return Container(
                       margin: const EdgeInsets.only(bottom: 10.0),
                       decoration: BoxDecoration(
-                        color: Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: ListTile(

@@ -44,15 +44,15 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 1
-                ? _buildHighlightedIcon(Icons.add_circle_outlined, Colors.orange)
-                : const Icon(Icons.add_circle_outlined, color: Colors.grey),
-            label: 'Upload',
-          ),
-          BottomNavigationBarItem(
-            icon: _currentIndex == 2
                 ? _buildHighlightedIcon(Icons.search, Colors.orange)
                 : const Icon(Icons.search, color: Colors.grey),
             label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: _currentIndex == 2
+                ? _buildHighlightedIcon(Icons.add_circle_outlined, Colors.orange)
+                : const Icon(Icons.add_circle_outlined, color: Colors.grey),
+            label: 'Upload',
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 3
@@ -73,8 +73,8 @@ class _HomePageState extends State<HomePage> {
         onPageChanged: _onPageChanged,
         children: [
           const HomeScreen(),
-          const UploadPage(),
           const SearchPage(),
+          const UploadPage(),
           const NotificationPage(),
           const ProfilePage(),
         ],
@@ -269,7 +269,7 @@ class HomeScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const SummaryPage1(),
+                builder: (context) => const SummaryPage(),
               ),
             );
             break;
@@ -278,7 +278,7 @@ class HomeScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const SummaryPage2(),
+                builder: (context) => const SummaryPage(),
               ),
             );
         }
