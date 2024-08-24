@@ -1,228 +1,126 @@
+import 'package:blog_app/followingpage.dart';
+import 'package:blog_app/homepage.dart';
+import 'package:blog_app/notificationpage.dart';
+import 'package:blog_app/profilepage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
-class FollowersPage extends StatelessWidget {
+class FollowersPage extends StatefulWidget {
   const FollowersPage({super.key});
+
+  @override
+  State<FollowersPage> createState() => _FollowersPageState();
+}
+
+class _FollowersPageState extends State<FollowersPage> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: GNav(
-        tabBackgroundColor: Colors.grey.shade400,
-        padding: const EdgeInsets.all(16),
-        tabs: const [
-          GButton(icon: Icons.home),
-          GButton(icon: Icons.search),
-          GButton(icon: Icons.add_circle),
-          GButton(icon: Icons.notifications),
-          GButton(icon: Icons.person),
-        ],
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              Row(
-                children: [
-                  Image.asset('assets/images/icon.png', width: 50, height: 50,),
-                  const SizedBox(width: 100,),
-                  Image.asset('assets/images/Blog nest logo.png', width: 100, height: 100,),
-                  const SizedBox(width: 75,),
-                  Image.asset('assets/images/Profile Picture.png')
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                      },
+                      child: const Icon(Icons.arrow_back, color: Colors.orange),
+                    ),
+                    Image.asset('assets/images/Blog nest logo.png', width: 100, height: 100),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage()));
+                      },
+                      child: Image.asset('assets/images/Profile Picture.png', width: 50, height: 50),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 3,),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const SizedBox(width: 40,),
-                  const Text('Recents', style: TextStyle(fontWeight: FontWeight.bold),),
-                  const SizedBox(width: 70,),
-                  const Text('Following', style: TextStyle(fontWeight: FontWeight.bold),),
-                  const SizedBox(width: 85,),
-                  Text('Followers',style: TextStyle(color: Colors.yellow[900],fontWeight: FontWeight.bold),),
-                ],
-              ),
-              const Divider(thickness: 2.0,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('assets/images/Profile Picture.png'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowingPage()));
+                    },
+                    child: const Text(
+                      'Following',
+                      style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-                      ),
-                      Text('Username',)
-                    ],
-                  )
-                ],
-              ),
-              const Divider(thickness: 2.0,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('assets/images/Profile Picture.png'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FollowersPage()));
+                    },
+                    child: const Text(
+                      'Followers',
+                      style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, color: Colors.orange),
                     ),
                   ),
-                  const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-                      ),
-                      Text('Username',)
-                    ],
-                  )
                 ],
               ),
               const Divider(thickness: 2.0,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('assets/images/Profile Picture.png'),
-                    ),
-                  ),
-                  const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-                      ),
-                      Text('Username',)
-                    ],
-                  )
-                ],
+              ListView.builder(
+                shrinkWrap: true,  // Only as big as its children
+                physics: const NeverScrollableScrollPhysics(),  // Prevent scrolling within this ListView
+                itemCount: 10,  // Number of followers to display
+                itemBuilder: (context, index) {
+                  return _buildFollowerRow();
+                },
               ),
-              const Divider(thickness: 2.0,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('assets/images/Profile Picture.png'),
-                    ),
-                  ),
-                  const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-                      ),
-                      Text('Username',)
-                    ],
-                  )
-                ],
-              ),
-              const Divider(thickness: 2.0,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('assets/images/Profile Picture.png'),
-                    ),
-                  ),
-                  const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-                      ),
-                      Text('Username',)
-                    ],
-                  )
-                ],
-              ),
-              const Divider(thickness: 2.0,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('assets/images/Profile Picture.png'),
-                    ),
-                  ),
-                  const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-                      ),
-                      Text('Username',)
-                    ],
-                  )
-                ],
-              ),
-              const Divider(thickness: 2.0,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('assets/images/Profile Picture.png'),
-                    ),
-                  ),
-                  const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-                      ),
-                      Text('Username',)
-                    ],
-                  )
-                ],
-              ),
-              const Divider(thickness: 2.0,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('assets/images/Profile Picture.png'),
-                    ),
-                  ),
-                  const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text('Hastik', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
-                      ),
-                      Text('Username',)
-                    ],
-                  )
-                ],
-              ),
-              const Divider(thickness: 2.0,),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildFollowerRow() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage('assets/images/Profile Picture.png'),
+          ),
+          const SizedBox(width: 15),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Mohanapriya',
+                style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 18),
+              ),
+              const Text(
+                '@Mohanapriya',
+                style: TextStyle(fontFamily: 'Poppins', color: Colors.grey),
+              ),
+            ],
+          ),
+          const Spacer(),
+          TextButton(
+            onPressed: () {
+              // Handle the "Follow Back" action
+            },
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.orangeAccent,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            ),
+            child: const Text(
+              'Follow Back',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }

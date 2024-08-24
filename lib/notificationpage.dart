@@ -1,137 +1,81 @@
+import 'package:blog_app/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
-class NotificationPage extends StatelessWidget {
+class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
 
   @override
+  State<NotificationPage> createState() => _NotificationPageState();
+}
+
+class _NotificationPageState extends State<NotificationPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      bottomNavigationBar: GNav(
-        tabBackgroundColor: Colors.grey.shade400,
-        padding: const EdgeInsets.all(16),
-        tabs: const [
-          GButton(icon: Icons.home),
-          GButton(icon: Icons.search),
-          GButton(icon: Icons.add_circle),
-          GButton(icon: Icons.notifications),
-          GButton(icon: Icons.person),
-        ],
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_outlined, color: Colors.orange),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage() ));
+          },
+        ),
+        title: const Text(
+          'Notifications',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 12,),
-              Row(
-                children: [
-                  const SizedBox(width: 10,),
-                  const Icon(Icons.arrow_back_outlined),
-                  const SizedBox(width: 20,),
-                  const Text('Notifications', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                  const SizedBox(width: 150,),
-                  Image.asset('assets/images/Profile Picture.png'),
-                ],
-              ),
-              const SizedBox(height: 10,),
-              const Divider(thickness: 1.5,),
-              const SizedBox(height: 20,),
-              Container(
-                width: 326,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
+        child: ListView.builder(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Row(
-                  children: [
-                    SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 326,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
-                  ],
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(16),
+                  leading: CircleAvatar(
+                    radius: 24,
+                    backgroundColor: Colors.orange.shade200,
+                    child: const Icon(Icons.notifications, color: Colors.white),
+                  ),
+                  title: Text(
+                    'Notification ${index + 1}',
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    'This is the detail of notification ${index + 1}.',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                  onTap: () {
+                    // Handle notification tap
+                  },
                 ),
               ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 326,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 326,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 326,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Container(
-                width: 326,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  children: [
-                    SizedBox(width: 20,),
-                    Text('Notification', style: TextStyle(fontWeight: FontWeight.bold),)
-                  ],
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
   }
 }
+
+

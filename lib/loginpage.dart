@@ -1,12 +1,79 @@
+import 'package:blog_app/forgot_password.dart';
+import 'package:blog_app/homepage.dart';
+import 'package:blog_app/service/auth.dart';
+import 'package:blog_app/signuppage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  String email = "", password = "";
+
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
+  final _formkey = GlobalKey<FormState>();
+
+  final TextEditingController _emailController =
+  TextEditingController(text: 'mohana@gmail.com');
+  final TextEditingController _passwordController =
+  TextEditingController(text: '123456');
+
+  Future<void> userLogin() async {
+    try {
+      debugPrint('Attempting to sign in');
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      debugPrint('Sign in successful');
+      Navigator.pop(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+      debugPrint('Navigating to HomePage');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        debugPrint('User not found');
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              'No user found for that Email',
+              style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins'),
+            ),
+          ),
+        );
+      } else if (e.code == 'wrong-password') {
+        debugPrint('Wrong password');
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              'Wrong Password Provided by User',
+              style: TextStyle(fontSize: 18.0, fontFamily: 'Poppins'),
+            ),
+          ),
+        );
+      } else {
+        debugPrint('Error: ${e.message}');
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -15,30 +82,45 @@ class LoginPage extends StatelessWidget {
               children: [
                 Image.asset('assets/images/Blog nest logo.png', width: 130,),
                 const SizedBox(height: 10,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
-                      fillColor: Colors.white,
-                      filled: true,
-                      errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red))
+                Form(
+                  key: _formkey,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: TextFormField(
+                      validator: (value) {
+                        if(value == null || value.isEmpty) {
+                          return 'Please Enter the Email';
+                        }
+                      },
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        hintText: 'Email', suffixIcon: const Icon(Icons.email),
+                        enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
+                        // fillColor: Colors.white,
+                        filled: true,
+                        errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red))
+                      ),
+                      keyboardType: TextInputType.emailAddress,
                     ),
-                    keyboardType: TextInputType.emailAddress,
                   ),
                 ),
                 const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextField(
+                  child: TextFormField(
+                    validator: (value) {
+                      if(value == null || value.isEmpty) {
+                        return 'Please Enter the Password';
+                      }
+                    },
+                    controller: passwordController,
                     decoration: InputDecoration(
                       enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                       focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
-                      hintText: 'Password',
+                      hintText: 'Password', suffixIcon: const Icon(Icons.password),
                       errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-                      fillColor: Colors.white,
+                      // fillColor: Colors.white,
                       filled: true
                     ),
                     keyboardType: TextInputType.visiblePassword,
@@ -46,27 +128,43 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Forgot Password?', style: TextStyle(color: Colors.grey.shade600),),
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPassword()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('Forgot Password ?', style: TextStyle(color: Colors.grey.shade600, fontFamily: 'Poppins'),),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20,),
-                Container(
-                  padding: const EdgeInsets.all(25),
-                  margin: const EdgeInsets.symmetric(horizontal: 25.0),
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(8.0)
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Sign In',
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 15),
+                GestureDetector(
+                  onTap: () {
+                    if(_formkey.currentState!.validate()) {
+                      setState(() {
+                        email = emailController.text;
+                        password = passwordController.text;
+                      });
+                    }
+                    userLogin();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(25),
+                    margin: const EdgeInsets.symmetric(horizontal: 25.0),
+                    decoration: BoxDecoration(
+                      color: Colors.orangeAccent,
+                      borderRadius: BorderRadius.circular(8.0)
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Sign In',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 15, fontFamily: 'Poppins'),
+                      ),
                     ),
                   ),
                 ),
@@ -78,14 +176,14 @@ class LoginPage extends StatelessWidget {
                     Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[300],
+                          color: Colors.black38,
                         )
                     ),
-                    const Text('Or continue with'),
+                    const Text('Or continue with', style: TextStyle( fontFamily: 'Poppins'),),
                     Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[300],
+                          color: Colors.black45,
                         )
                     ),
                     const SizedBox(width: 25,)
@@ -95,17 +193,52 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/images/Google.png', height: 60,),
-                    Image.asset('assets/images/Apple.png', height: 50,),
+                    GestureDetector(
+                      onTap: () async {
+                        // Sign in with Google
+                        await AuthMethods().signInWithGoogle(context);
+
+                        // After successful sign-in, navigate to the LoginPage
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const HomePage()),
+                        );
+                      },
+                      child: Image.asset('assets/images/Google.png', height: 60),
+                    ),
+                    const SizedBox(width: 20), // Adding some spacing between the icons
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the LoginPage directly when the Apple icon is tapped
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const HomePage()),
+                        );
+                      },
+                      child: Image.asset('assets/images/Apple.png', height: 50),
+                    ),
                   ],
                 ),
+
                 const SizedBox(height: 20,),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Not Registered?'),
-                    SizedBox(width: 4,),
-                    Text('Register here', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),)
+                    const Text('Not Registered?', style: TextStyle( fontFamily: 'Poppins'),),
+                    const SizedBox(width: 4,),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
+                      },
+                      child: const Text(
+                        'Register here',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins'
+                        ),
+                      ),
+                    )
                   ],
                 )
               ],
